@@ -38,9 +38,10 @@ function searchFines(searchKey) {
         return element.номер.includes(searchKey) || element.тип.includes(searchKey);
     });
 
-    return searchResult.length > 0
-        ? searchResult
-        : [
-            {номер: '001', тип: 'Перевищення швидкості', сума: 100, дата: '2023-01-15'}
-          ];
+    if (searchResult.length > 0) {
+        return searchResult;
+    } else {
+        alert("Штраф не знайдено");
+        return [];
+    }
 }
