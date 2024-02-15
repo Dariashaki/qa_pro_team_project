@@ -6,7 +6,7 @@ window.fineList = {
 //Ця зміна містить всі дані які в нас зберігаються у файлі data
 let DB = data.finesData;
 
-function searchFines(searchKey){
+// function searchFines(searchKey){
     /*
      Напишіть свій код тут!
      Як ви бачите функція повертає статичні дані.
@@ -20,8 +20,27 @@ function searchFines(searchKey){
      */
 
 
-    return [
-        {номер: '001', тип: 'Перевищення швидкості', сума: 100, дата: '2023-01-15'}
-    ];
-}
+//     return [
+//         {номер: '001', тип: 'Перевищення швидкості', сума: 100, дата: '2023-01-15'}
+//     ];
+// }
 
+function searchFines(searchKey) {
+    console.log(searchKey);
+    console.log(DB);
+
+    if (!searchKey) {
+        console.error("Не вказано значення для пошуку");
+        return [];
+    }
+
+    const searchResult = DB.filter(element => {
+        return element.номер.includes(searchKey) || element.тип.includes(searchKey);
+    });
+
+    return searchResult.length > 0
+        ? searchResult
+        : [
+            {номер: '001', тип: 'Перевищення швидкості', сума: 100, дата: '2023-01-15'}
+          ];
+}
